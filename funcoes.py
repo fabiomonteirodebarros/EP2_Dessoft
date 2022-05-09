@@ -1,14 +1,14 @@
 #Normalizando Base de Países 
 
 def normaliza (dic):
-    saida = {}
+    dados = {}
     for continente in dic:
         tudo = dic[continente]
         for pais in tudo:
             carac = tudo[pais]
-            saida[pais] = carac
-            saida[pais]['continente'] = continente
-    return saida
+            dados[pais] = carac
+            dados[pais]['continente'] = continente
+    return dados
 
 #Adicionando em uma Lista Ordenada
 
@@ -70,5 +70,3 @@ def haversine (raio, p1, l1, p2 , l2):
     raiz2 = raiz**(1/2)
     d = 2 * raio * asin(raiz2)
     return d
-
-print ('oi')
