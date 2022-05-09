@@ -71,3 +71,4 @@ def haversine (raio, p1, l1, p2 , l2):
     d = 2 * raio * asin(raiz2)
     return d
 
+print ('oi')
