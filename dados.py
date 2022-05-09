@@ -1,4 +1,4 @@
-DADOS = {
+dados1 = {
   "asia": {
     "afeganistao": {
       "area": 652230,
