@@ -66,7 +66,7 @@ def sorteia_pais (dicionario):
 
 from math import *
 def haversine (raio, p1, l1, p2 , l2):
-    raiz = (sin(radians((p2-p1)/2))*2) + cos(radians(p1)) * cos(radians(p2)) * (sin(radians((l2-l1)/2))*2)
+    raiz = (sin(radians((p2-p1)/2))**2) + cos(radians(p1)) * cos(radians(p2)) * (sin(radians((l2-l1)/2))**2)
     raiz2 = raiz**(1/2)
     d = 2 * raio * asin(raiz2)
     return d
