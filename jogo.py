@@ -1,5 +1,6 @@
 from funcoes import *
 from dados import dados1
+from math import *
 
 
 
@@ -59,8 +60,8 @@ while i == 0:
             escolha_dica = int(input('Escolha sua opção: [0][1][2][3][4][5] '))
 
         d = haversine(raio, p1, l1, p2, l2)
-        d = int(d)
-        print('{1} km -> {0}'.format(chute ,d))
+        d1 = int(d)
+        print('{1} km -> {0}'.format(chute ,d1))
 
     jogar_dnv = input('Jogar novamente? [s|n] ')
     if jogar_dnv == 'n':
