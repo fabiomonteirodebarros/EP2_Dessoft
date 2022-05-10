@@ -24,6 +24,7 @@ raio = 6371
 chutes = []
 tentativas = 20
 i = 0
+distancias = []
 
 while i == 0:
     print ('Um país foi escolhido, tente adivinhar!')
@@ -41,6 +42,9 @@ while i == 0:
         if chute not in dados:
             print("País desconhecido")
         
+        if chute == pais_aleatorio:
+            print('*** Parabéns! Você acertou após {0} tentativas!'.format(len(chutes)))
+        
         elif chute != pais_aleatorio and chute not in chutes:
             tentativas -= 1
             chutes.append(chute)
@@ -53,11 +57,19 @@ while i == 0:
 
             d = haversine(raio, p1, l1, p2, l2)
             d1 = int(d)
-            print('{1} km -> {0}'.format(chute ,d1))
+            
+            ordem_distancias = adiciona_em_ordem(chute, d1, distancias)
+            distancias.append([chute, d1])
+            for lista in ordem_distancias:
+                print('{1} km -> {0}'.format(lista[0], lista[1]))
+            
 
         elif chute == 'dica':
             print('1. Cor da bandeira  - custa 4 tentativas//2. Letra da capital - custa 3 tentativas//3. Área             - custa 6 tentativas//4. População        - custa 5 tentativas//5. Continente       - custa 7 tentativas//0. Sem dica')
             escolha_dica = int(input('Escolha sua opção: [0][1][2][3][4][5] '))
+
+    if tentativas == 0:
+        print ('>>> Você perdeu, o país era: {0}'.format(pais_aleatorio))
 
     jogar_dnv = input('Jogar novamente? [s|n] ')
     if jogar_dnv == 'n':
