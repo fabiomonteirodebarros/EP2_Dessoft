@@ -25,11 +25,12 @@ chutes = []
 tentativas = 20
 i = 0
 distancias = []
+cores_validas = []
 
 while i == 0:
     print ('Um país foi escolhido, tente adivinhar!')
     while tentativas > 0:
-        print ('Você tem {0} tentativa(s)\n'.format(tentativas))
+        print ('\nVocê tem {0} tentativa(s)\n'.format(tentativas))
         chute = input('Qual seu palpite? ')
         chute = chute.lower()
         if chute == 'desisto':
@@ -39,11 +40,12 @@ while i == 0:
                 break
             else:
                 continue
-        if chute not in dados:
-            print("País desconhecido")
-        
+
         if chute == pais_aleatorio:
             print('*** Parabéns! Você acertou após {0} tentativas!'.format(len(chutes)))
+
+        if chute not in dados:
+            print("País desconhecido")
         
         elif chute != pais_aleatorio and chute not in chutes:
             tentativas -= 1
@@ -64,9 +66,20 @@ while i == 0:
                 print('{1} km -> {0}'.format(lista[0], lista[1]))
             
 
-        elif chute == 'dica':
-            print('1. Cor da bandeira  - custa 4 tentativas//2. Letra da capital - custa 3 tentativas//3. Área             - custa 6 tentativas//4. População        - custa 5 tentativas//5. Continente       - custa 7 tentativas//0. Sem dica')
+        if chute == 'dica':
+            print('\n1. Cor da bandeira  - custa 4 tentativas\n2. Letra da capital - custa 3 tentativas\n3. Área             - custa 6 tentativas\n4. População        - custa 5 tentativas\n5. Continente       - custa 7 tentativas\n0. Sem dica')
             escolha_dica = int(input('Escolha sua opção: [0][1][2][3][4][5] '))
+            if escolha_dica == 0:
+                continue
+            elif escolha_dica == 1 and tentativas > 4:
+                tentativas -= 4
+                cores = dados[pais_aleatorio]['bandeira']
+                for cor in cores:
+                    if cores[cor] > 0:
+                        cores_validas.append(cor)
+                cor_sorteada = random.choice(cores_validas)
+                print ('- Cores da bandeira: {0}'.format(cor_sorteada))
+
 
     if tentativas == 0:
         print ('>>> Você perdeu, o país era: {0}'.format(pais_aleatorio))
