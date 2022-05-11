@@ -77,6 +77,8 @@ while i == 0:
                 for cor in cores:
                     if cores[cor] > 0:
                         cores_validas.append(cor)
+                        if 'outras' in cores_validas:
+                            cores_validas.remove('outras')
                 cor_sorteada = random.choice(cores_validas)
                 print ('- Cores da bandeira: {0}'.format(cor_sorteada))
 
