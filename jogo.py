@@ -1,7 +1,18 @@
 from funcoes import *
 from dados import dados1
 from math import *
-
+pref = "\033["
+reset = f"{pref}0m"
+class cores:
+    preto= "30m"
+    vermelho= "31m"
+    verde= "32m"
+    amarelo= "33m"
+    azul= "34m"
+    magenta= "35m"
+    ciano= "36m"
+    branco = "37m"
+    
 
 
 print (" ============================ ")
@@ -26,6 +37,7 @@ tentativas = 20
 i = 0
 distancias = []
 cores_validas = []
+lista=[]
 
 while i == 0:
     print ('Um país foi escolhido, tente adivinhar!')
@@ -80,8 +92,30 @@ while i == 0:
                         if 'outras' in cores_validas:
                             cores_validas.remove('outras')
                 cor_sorteada = random.choice(cores_validas)
+                cores_validas.remove(cor_sorteada)
                 print ('- Cores da bandeira: {0}'.format(cor_sorteada))
+            elif escolha_dica == 2 and tentativas > 3:
+                tentativas -= 3
+                capital = dados[pais_aleatorio]['capital']
+                letra_capital=sorteia_letra(capital,lista)
+                lista.append(letra_capital)
+                print ('- Letras da capital: {0}'.format(', '.join(lista)))
 
+            elif escolha_dica == 3 and tentativas >6:
+                tentativas -=6
+                area= dados[pais_aleatorio]['area']
+                print ('- Área: {0} km2'.format(area))
+
+            elif escolha_dica == 4 and tentativas >5:
+                tentativas -=5
+                populacao=dados[pais_aleatorio]['populacao']
+                print ('- População: {0} habitantes'.format(populacao))
+            
+            elif escolha_dica == 5 and tentativas >7:
+                tentativas -=7
+                continente=dados[pais_aleatorio]['continente']
+                print ('- Continente: {0} '.format(continente))
+            
 
     if tentativas == 0:
         print ('>>> Você perdeu, o país era: {0}'.format(pais_aleatorio))
