@@ -30,21 +30,20 @@ print ("inventario  - exibe sua posição \n")
 
 
 dados=normaliza(dados1)
-pais_aleatorio = sorteia_pais(dados)
 raio = 6371
-chutes = []
 i = 0
-distancias = []
-cores_validas = []
-lista=[]
-d3 = True
-d4 = True
-d5 = True
-
 
 while i == 0:
     print ('Um país foi escolhido, tente adivinhar!')
+    pais_aleatorio = sorteia_pais(dados)
     tentativas = 20
+    chutes = []
+    distancias = []
+    cores_validas = []
+    lista=[]
+    d3 = True
+    d4 = True
+    d5 = True
     while tentativas > 0:
         opcoes = '0'
         print ('\nVocê tem {0} tentativa(s)\n'.format(tentativas))
@@ -59,7 +58,8 @@ while i == 0:
                 continue
 
         if chute == pais_aleatorio:
-            print('*** Parabéns! Você acertou após {0} tentativas!'.format(len(chutes)))
+            print('*** Parabéns! Você acertou após {0} tentativas!'.format(21-tentativas))
+            break
 
         if chute not in dados and chute != 'dica':
             print("País desconhecido")
