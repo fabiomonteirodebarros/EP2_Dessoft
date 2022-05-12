@@ -170,7 +170,6 @@ while i == 0:
             elif escolha_dica == 3 and tentativas >6:
                 tentativas -=6
                 area = dados[pais_aleatorio]['area']
-                print ('- Área: {0} km2'.format(area))
                 d3 = False
                 dicas_oficial.append('\n- Área: {0} km2'.format(area))
                 print ('\nDistâncias:')
@@ -183,7 +182,6 @@ while i == 0:
             elif escolha_dica == 4 and tentativas >5:
                 tentativas -=5
                 populacao = dados[pais_aleatorio]['populacao']
-                print ('- População: {0} habitantes'.format(populacao))
                 d4 = False 
                 dicas_oficial.append('\n- População: {0} habitantes'.format(populacao))
                 print ('\nDistâncias:')
@@ -196,7 +194,6 @@ while i == 0:
             elif escolha_dica == 5 and tentativas >7:
                 tentativas -=7
                 continente = dados[pais_aleatorio]['continente']
-                print ('- Continente: {0} '.format(continente))
                 d5 = False
                 dicas_oficial.append('\n- Continente: {0} '.format(continente))
                 print ('\nDistâncias:')
