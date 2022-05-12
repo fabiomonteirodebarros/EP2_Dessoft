@@ -95,6 +95,9 @@ while i == 0:
             print ('\nDistâncias:')
             for lista in distancias:
                 print('{1} km -> {0}'.format(lista[0], lista[1]))
+            print('\nDicas:')
+            for i in dicas_oficial:
+                print (i)
 
         if chute == 'dica':
             print('\nMercado de Dicas')
