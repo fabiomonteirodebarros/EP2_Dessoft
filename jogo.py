@@ -33,7 +33,6 @@ dados=normaliza(dados1)
 pais_aleatorio = sorteia_pais(dados)
 raio = 6371
 chutes = []
-tentativas = 20
 i = 0
 distancias = []
 cores_validas = []
@@ -45,6 +44,7 @@ d5 = True
 
 while i == 0:
     print ('Um país foi escolhido, tente adivinhar!')
+    tentativas = 20
     while tentativas > 0:
         opcoes = '0'
         print ('\nVocê tem {0} tentativa(s)\n'.format(tentativas))
@@ -77,10 +77,12 @@ while i == 0:
             d = haversine(raio, p1, l1, p2, l2)
             d1 = int(d)
             
-            ordem_distancias = adiciona_em_ordem(chute, d1, distancias)
-            distancias.append([chute, d1])
-            for lista in ordem_distancias:
+            distancias = adiciona_em_ordem(chute, d1, distancias)
+            print ('\nDistâncias:')
+            for lista in distancias:
                 print('{1} km -> {0}'.format(lista[0], lista[1]))
+        elif chute in chutes:
+            print ('Você já tentou esse país')
             
 
         if chute == 'dica':
