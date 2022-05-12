@@ -44,6 +44,9 @@ while i == 0:
     d3 = True
     d4 = True
     d5 = True
+    letras_capitais = []
+    dicas_oficial = []
+    bandeiras = []
     while tentativas > 0:
         opcoes = '0'
         print ('\nVocê tem {0} tentativa(s)\n'.format(tentativas))
@@ -61,10 +64,10 @@ while i == 0:
             print('*** Parabéns! Você acertou após {0} tentativas!'.format(21-tentativas))
             break
 
-        if chute not in dados and chute != 'dica':
+        if chute not in dados and chute != 'dica' and chute != 'inventario' :
             print("País desconhecido")
         
-        elif chute != pais_aleatorio and chute not in chutes and chute != 'dica':
+        elif chute != pais_aleatorio and chute not in chutes and chute != 'dica' and chute != 'inventario':
             tentativas -= 1
             chutes.append(chute)
             
@@ -81,9 +84,16 @@ while i == 0:
             print ('\nDistâncias:')
             for lista in distancias:
                 print('{1} km -> {0}'.format(lista[0], lista[1]))
+            print('\nDicas:')
+            for i in dicas_oficial:
+                print (i)
         elif chute in chutes:
             print ('Você já tentou esse país')
-            
+
+        elif chute == 'inventario':
+            print ('\nDistâncias:')
+            for lista in distancias:
+                print('{1} km -> {0}'.format(lista[0], lista[1]))
 
         if chute == 'dica':
             print('\nMercado de Dicas')
@@ -105,7 +115,7 @@ while i == 0:
                 opcoes += '|5'
             print('0. Sem dica')
             print('------------------------------------------------------')
-
+            
             escolha_dica = int(input('Escolha sua opção: {0}: '.format(opcoes)))
             if escolha_dica == 0:
                 continue
@@ -120,31 +130,52 @@ while i == 0:
                             cores_validas.remove('outras')
                 cor_sorteada = random.choice(cores_validas)
                 cores_validas.remove(cor_sorteada)
-                print ('\n- Cores da bandeira: {0}'.format(cor_sorteada))
+                bandeiras.append(cor_sorteada)
+                print ('\n- Cores da bandeira: {0}'.format(', '.join(bandeiras)))
+                dica_bandeira = '- Cores da bandeira: '
+                for j in bandeiras:
+                    dica_bandeira += j + ' '
+                if len(bandeiras) < 2:
+                    dicas_oficial.append(dica_bandeira)
+                    index_band = dicas_oficial.index(dica_bandeira)
+                else:
+                    dicas_oficial[index_band] = dica_bandeira
+
             elif escolha_dica == 2 and tentativas > 3:
                 tentativas -= 3
                 capital = dados[pais_aleatorio]['capital']
                 letra_capital = sorteia_letra(capital,lista)
-                lista.append(letra_capital)
-                print ('\n- Letras da capital: {0}'.format(', '.join(lista)))
+                letras_capitais.append(letra_capital)
+                print ('\n- Letras da capital: {0}'.format(', '.join(letras_capitais)))
+                dica_capital = '- Letras da capital: '
+                for j in letras_capitais:
+                    dica_capital += j + ' '
+                if len(letras_capitais) < 2:
+                    dicas_oficial.append(dica_capital)
+                    index_cap = dicas_oficial.index(dica_capital)
+                else:
+                    dicas_oficial[index_cap] = dica_capital
 
             elif escolha_dica == 3 and tentativas >6:
                 tentativas -=6
                 area = dados[pais_aleatorio]['area']
                 print ('\n- Área: {0} km2'.format(area))
                 d3 = False
+                dicas_oficial.append('\n- Área: {0} km2'.format(area))
 
             elif escolha_dica == 4 and tentativas >5:
                 tentativas -=5
                 populacao = dados[pais_aleatorio]['populacao']
                 print ('\n- População: {0} habitantes'.format(populacao))
                 d4 = False 
+                dicas_oficial.append('\n- População: {0} habitantes'.format(populacao))
             
             elif escolha_dica == 5 and tentativas >7:
                 tentativas -=7
                 continente = dados[pais_aleatorio]['continente']
                 print ('\n- Continente: {0} '.format(continente))
                 d5 = False
+                dicas_oficial.append('\n- Continente: {0} '.format(continente))
             
             
 
