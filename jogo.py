@@ -30,11 +30,12 @@ print (bcolors.roxo+"inventario  - exibe sua posição \n"+bcolors.normal)
 
 dados=normaliza(dados1)
 raio = 6371
-i = 0
+jogar_dnv = 's'
 
 
-while i == 0:
-    print ('Um país foi escolhido, tente adivinhar!')
+
+while jogar_dnv == 's':
+    print ('\nUm país foi escolhido, tente adivinhar!')
     pais_aleatorio = sorteia_pais(dados)
     tentativas = 20
     chutes = []
@@ -48,8 +49,18 @@ while i == 0:
     dicas_oficial = []
     bandeiras = []
     while tentativas > 0:
+        if tentativas >15:
+            tentativas_colorido= bcolors.verde+str(tentativas)+bcolors.normal
+        elif tentativas >10:
+            tentativas_colorido= bcolors.ciano+str(tentativas)+bcolors.normal
+        elif tentativas > 5:
+            tentativas_colorido= bcolors.amarelo+str(tentativas)+bcolors.normal
+        else:
+            tentativas_colorido=bcolors.vermelho+str(tentativas)+bcolors.normal
+
+        
         opcoes = '0'
-        print ('\nVocê tem {0} tentativa(s)\n'.format(tentativas))
+        print ('\nVocê tem {0} tentativa(s)\n'.format(tentativas_colorido))
         chute = input('Qual seu palpite? ')
         chute = chute.lower()
         if chute == 'desisto':
@@ -61,7 +72,8 @@ while i == 0:
                 continue
 
         if chute == pais_aleatorio:
-            print('*** Parabéns! Você acertou após {0} tentativas!'.format(21-tentativas))
+            tentativas_colorido = 21-tentativas
+            print('*** Parabéns! Você acertou após {0} tentativas!'.format(tentativas_colorido))
             break
 
         if chute not in dados and chute != 'dica' and chute != 'inventario' :
@@ -223,5 +235,3 @@ while i == 0:
         chute = ''
         print ('Até a próxima!')
         break
-    else:
-        continue
