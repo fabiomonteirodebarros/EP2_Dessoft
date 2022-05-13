@@ -212,6 +212,7 @@ while i == 0:
 
     jogar_dnv = input('Jogar novamente? [s|n] ')
     if jogar_dnv == 'n':
+        chute = ''
         print ('Até a próxima!')
         break
     else:
