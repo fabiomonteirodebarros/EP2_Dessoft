@@ -1,32 +1,31 @@
 from funcoes import *
 from dados import dados1
 from math import *
-pref = "\033["
-reset = f"{pref}0m"
-class colorido:
-    preto= "30m"
-    vermelho= "31m"
-    verde= "32m"
-    amarelo= "33m"
-    azul= "34m"
-    magenta= "35m"
-    ciano= "36m"
-    branco = "37m"
-    
+class bcolors:
+    preto= "0\33[0;30m"
+    vermelho = "\033[0;31m"
+    verde = "\033[0;32m"
+    amarelo = "\033[0;33m"
+    azul = "\033[0;34m"
+    roxo = "\033[0;35m"
+    ciano = "\033[0;36m"
+    normal= "\033[0m"
+    cinza_escuro= "\033[1;30m"
+    branco_forte= "\033[1;37m"
 
 
-print (" ============================ ")
-print ("|                            |")
-print ("| Bem-vindo ao Insper Países |")
-print ("|                            |")
-print (" ==== Design de Software ==== ")
+print (bcolors.branco_forte+" ============================ "+bcolors.normal)
+print (bcolors.branco_forte+"|                            |"+bcolors.normal)
+print (bcolors.branco_forte+"| Bem-vindo ao Insper Países |"+bcolors.normal)
+print (bcolors.branco_forte+"|                            |"+bcolors.normal)
+print (bcolors.branco_forte+" ==== Design de Software ==== "+bcolors.normal)
 
 
-print ("\nComandos:")
+print (bcolors.branco_forte+"\nComandos:"+bcolors.normal)
 
-print ("\ndica        - entra no mercado de dicas ")
-print ("desisto     - desiste da rodada ")
-print ("inventario  - exibe sua posição \n")
+print (bcolors.ciano+"\ndica        - entra no mercado de dicas "+bcolors.normal)
+print (bcolors.cinza_escuro+"desisto     - desiste da rodada "+bcolors.normal)
+print (bcolors.roxo+"inventario  - exibe sua posição \n"+bcolors.normal)
 
 
 dados=normaliza(dados1)
@@ -84,7 +83,16 @@ while i == 0:
             distancias = adiciona_em_ordem(chute, d1, distancias)
             print ('\nDistâncias:')
             for lista in distancias:
-                print('{1} km -> {0}'.format(lista[0], lista[1]))
+                if lista[1] <= 1000:
+                    print(bcolors.verde+'{1} km -> {0}'.format(lista[0], lista[1])+ bcolors.normal)
+                if lista[1] >1000 and lista[1]<=2000:
+                    print(bcolors.ciano+'{1} km -> {0}'.format(lista[0], lista[1])+ bcolors.normal)
+                if lista[1]> 2000 and lista[1]<=5000:
+                    print(bcolors.amarelo+'{1} km -> {0}'.format(lista[0], lista[1])+ bcolors.normal)
+                if lista[1]> 5000 and lista[1]<=10000:
+                    print(bcolors.vermelho+'{1} km -> {0}'.format(lista[0], lista[1])+ bcolors.normal)
+                if lista[1]> 10000:
+                    print(bcolors.cinza_escuro+'{1} km -> {0}'.format(lista[0], lista[1])+ bcolors.normal)
             print('\nDicas:')
             for i in dicas_oficial:
                 print (i)
