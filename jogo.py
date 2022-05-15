@@ -12,6 +12,7 @@ class bcolors:
     normal= "\033[0m"
     cinza_escuro= "\033[1;30m"
     branco_forte= "\033[1;37m"
+    #Cores utilizadas
 
 
 print (bcolors.branco_forte+" ============================ "+bcolors.normal)
@@ -28,15 +29,15 @@ print (bcolors.cinza_escuro+"desisto     - desiste da rodada "+bcolors.normal)
 print (bcolors.roxo+"inventario  - exibe sua posição \n"+bcolors.normal)
 
 
-dados=normaliza(dados1)
+dados=normaliza(dados1)#Primeiro nós pegamos toda a lista de países e jogamos no normaliza, para que retornasse um dicionário onde a chave interna era o continente.
 raio = 6371
 jogar_dnv = 's'
 
 
 
-while jogar_dnv == 's':
+while jogar_dnv == 's': #começamos o while grande com o jogar novamente porque se a resposta for sim ele entra no while novamente
     print ('\nUm país foi escolhido, tente adivinhar!')
-    pais_aleatorio = sorteia_pais(dados)
+    pais_aleatorio = sorteia_pais(dados)#Com os dados já normalizados, chama-se a função sorteia país e assim definisse qual o país escolhido para rodada
     tentativas = 20
     chutes = []
     distancias = []
@@ -63,7 +64,7 @@ while jogar_dnv == 's':
         print ('\nVocê tem {0} tentativa(s)\n'.format(tentativas_colorido))
         chute = input('Qual seu palpite? ')
         chute = chute.lower()
-        if chute == 'desisto':
+        if chute == 'desisto':#Aplicou-se a opção desisto
             desistencia = input('Tem certeza que deseja desistir da rodada? [s|n] ')
             if desistencia == 's':
                 print ('>>> Que deselegante desistir, o país era: {0}'.format(pais_aleatorio))
@@ -71,7 +72,7 @@ while jogar_dnv == 's':
             else:
                 continue
 
-        if chute == pais_aleatorio:
+        if chute == pais_aleatorio:#Foi colocado o print de ganhou, caso o jogador acerte o país 
             tentativas_colorido = 21-tentativas
             print('*** Parabéns! Você acertou após {0} tentativas!'.format(tentativas_colorido))
             break
@@ -89,10 +90,10 @@ while jogar_dnv == 's':
             p2 = dados[chute]['geo']['latitude']
             l2 = dados[chute]['geo']['longitude']
 
-            d = haversine(raio, p1, l1, p2, l2)
+            d = haversine(raio, p1, l1, p2, l2)#Aqui chama-se a função, distância de haversine, onde conseguimos calcular a distância do chute para o páis escolhido
             d1 = int(d)
             
-            distancias = adiciona_em_ordem(chute, d1, distancias)
+            distancias = adiciona_em_ordem(chute, d1, distancias)# Função adiciona em odrem, para que as funções fiquem fiquem todas organizadas da menor para maior nos chutes
             print ('\nDistâncias:')
             for lista in distancias:
                 if lista[1] <= 1000:
@@ -111,7 +112,7 @@ while jogar_dnv == 's':
         elif chute in chutes:
             print ('Você já tentou esse país')
 
-        elif chute == 'inventario':
+        elif chute == 'inventario':#Inventário, onde o jogador vê sua posição na rodada
             print ('\nDistâncias:')
             for lista in distancias:
                 print('{1} km -> {0}'.format(lista[0], lista[1]))
@@ -144,7 +145,7 @@ while jogar_dnv == 's':
             if escolha_dica == 0:
                 continue
             
-            elif escolha_dica == 1 and tentativas > 4:
+            elif escolha_dica == 1 and tentativas > 4:#Caso o jogador escolha a dica 1, será sorteada uma cor da bandeira que seja maior que zero, nos dados e diferente de outras
                 tentativas -= 4
                 cores = dados[pais_aleatorio]['bandeira']
                 for cor in cores:
@@ -170,10 +171,10 @@ while jogar_dnv == 's':
                 for i in dicas_oficial:
                     print (i)
 
-            elif escolha_dica == 2 and tentativas > 3:
+            elif escolha_dica == 2 and tentativas > 3:#Se o jogador escolher letra da capital, será sorteada uma letra da capital atráves da função sorteia_letra
                 tentativas -= 3
                 capital = dados[pais_aleatorio]['capital']
-                letra_capital = sorteia_letra(capital,lista)
+                letra_capital = sorteia_letra(capital,lista)#chama-se a função 
                 letras_capitais.append(letra_capital)
                 dica_capital = '- Letras da capital: '
                 for j in letras_capitais:
@@ -190,7 +191,7 @@ while jogar_dnv == 's':
                 for i in dicas_oficial:
                     print (i)
 
-            elif escolha_dica == 3 and tentativas >6:
+            elif escolha_dica == 3 and tentativas >6:#Se o jogador escolher a dica 3, ele receberá a área do país escolhido
                 tentativas -=6
                 area = dados[pais_aleatorio]['area']
                 d3 = False
@@ -202,7 +203,7 @@ while jogar_dnv == 's':
                 for i in dicas_oficial:
                     print (i)
 
-            elif escolha_dica == 4 and tentativas >5:
+            elif escolha_dica == 4 and tentativas >5:#Se o jogador escolher a dica 4, ele receberá a população do país escolhido
                 tentativas -=5
                 populacao = dados[pais_aleatorio]['populacao']
                 d4 = False 
@@ -214,7 +215,7 @@ while jogar_dnv == 's':
                 for i in dicas_oficial:
                     print (i)
 
-            elif escolha_dica == 5 and tentativas >7:
+            elif escolha_dica == 5 and tentativas >7:#Se o jogador escolher a dica 5, ele receberá o continente do país escolhido
                 tentativas -=7
                 continente = dados[pais_aleatorio]['continente']
                 d5 = False
